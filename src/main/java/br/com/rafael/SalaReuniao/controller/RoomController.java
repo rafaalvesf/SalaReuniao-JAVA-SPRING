@@ -24,7 +24,7 @@ public class RoomController {
         return roomRepository.findAll();
     }
 
-    @GetMapping("/room/id")
+    @GetMapping("/rooms/{id}")
     public ResponseEntity<Room> getRoomById(@PathVariable(value = "id") long roomId)
         throws ResourceNotFoundException{
         Room room = roomRepository.findById(roomId)
@@ -49,6 +49,7 @@ public class RoomController {
         final Room updateRoom = roomRepository.save(room);
         return ResponseEntity.ok(updateRoom);
     }
+    @DeleteMapping("/rooms/{id}")
     public Map<String, Boolean> deleteRoom(@PathVariable(value = "id")Long roomId)
         throws ResourceNotFoundException{
         Room room = roomRepository.findById(roomId)
